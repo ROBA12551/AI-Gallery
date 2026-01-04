@@ -5,7 +5,7 @@
   "main": "netlify/functions/github-upload.js",
   "scripts": {
     "dev": "netlify dev",
-    "build": "echo 'Static build complete'",
+    "build": "echo \"Static build complete\"",
     "deploy": "netlify deploy --prod",
     "functions": "netlify functions:create"
   },
@@ -20,7 +20,8 @@
   "author": "AI Image Gallery",
   "license": "MIT",
   "dependencies": {
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^2.6.12",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "netlify-cli": "^16.0.0"
