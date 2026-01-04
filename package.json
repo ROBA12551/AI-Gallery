@@ -1,0 +1,28 @@
+{
+  "name": "ai-image-gallery",
+  "version": "1.0.0",
+  "description": "Free AI-generated image gallery platform with GitHub integration",
+  "main": "netlify/functions/github-upload.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static build complete'",
+    "deploy": "netlify deploy --prod",
+    "functions": "netlify functions:create"
+  },
+  "keywords": [
+    "ai-images",
+    "gallery",
+    "download",
+    "anime-backgrounds",
+    "digital-art",
+    "github"
+  ],
+  "author": "AI Image Gallery",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "netlify-cli": "^16.0.0"
+  }
+}

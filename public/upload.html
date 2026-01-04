@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Upload Images - AI Image Gallery</title>
+    <meta name="description" content="Share your AI-generated images on AI Image Gallery. Simple upload process with metadata optimization.">
+    
+    <meta property="og:title" content="Upload Images - AI Image Gallery">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-image-gallery.netlify.app/upload.html">
+    
+    <link rel="canonical" href="https://ai-image-gallery.netlify.app/upload.html">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#f5f7fa">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23f5f7fa' width='100' height='100'/><circle cx='30' cy='30' r='20' fill='%235ba3d0'/><circle cx='70' cy='70' r='20' fill='%235ba3d0'/></svg>">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <a href="#upload-form" class="skip-link">Skip to upload form</a>
+
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/" class="logo" aria-label="AI Image Gallery - Home">
+                    <span class="logo-icon">🎨</span>
+                    <span class="logo-text">AI Gallery</span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Gallery</a></li>
+                    <li><a href="/upload.html" class="nav-link active" aria-current="page">Upload</a></li>
+                    <li><a href="/policy.html" class="nav-link">Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero hero-secondary">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Share Your<br>
+                    <span class="highlight">AI Creations</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Upload your AI-generated images and share them with the community.<br>
+                    Get discovered by setting the right metadata and tags.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content" id="upload-form">
+        <div class="container">
+            <div class="upload-container">
+                <!-- Upload Form -->
+                <div class="upload-form-section">
+                    <form id="uploadForm" class="upload-form" novalidate>
+                        <!-- Step Indicator -->
+                        <div class="form-steps">
+                            <div class="step active" data-step="1">
+                                <span class="step-number">1</span>
+                                <span class="step-label">Image</span>
+                            </div>
+                            <div class="step" data-step="2">
+                                <span class="step-number">2</span>
+                                <span class="step-label">Details</span>
+                            </div>
+                            <div class="step" data-step="3">
+                                <span class="step-number">3</span>
+                                <span class="step-label">Review</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 1: Image Upload -->
+                        <div class="form-step active" data-step="1">
+                            <h2 class="step-title">Upload Your Image</h2>
+                            <p class="step-description">Choose a high-quality AI-generated image to share</p>
+                            
+                            <div class="form-group">
+                                <label for="imageFile" class="form-label">
+                                    Select Image <span class="required">*</span>
+                                </label>
+                                <div class="upload-area" id="uploadArea" role="region" aria-label="Drag and drop zone">
+                                    <input 
+                                        type="file" 
+                                        id="imageFile" 
+                                        class="upload-input" 
+                                        accept="image/*" 
+                                        required
+                                    >
+                                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    <h3 class="upload-title">Drag & Drop Your Image Here</h3>
+                                    <p class="upload-text">or <strong>click</strong> to browse</p>
+                                    <p class="upload-hint">JPG, PNG, WebP • Up to 50MB • Recommended: 1920x1080 or higher</p>
+                                </div>
+                                <div id="imagePreview" class="image-preview" style="display:none;">
+                                    <img id="previewImage" src="" alt="Preview">
+                                    <button type="button" class="preview-remove" onclick="removePreview()">✕</button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Cancel</button>
+                                <button type="button" class="btn btn-primary" onclick="goToStep(2)">Next: Add Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Metadata -->
+                        <div class="form-step" data-step="2">
+                            <h2 class="step-title">Image Details</h2>
+                            <p class="step-description">Add information to help others find your image (great for SEO)</p>
+                            
+                            <div class="form-group">
+                                <label for="imageTitle" class="form-label">
+                                    Title <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="imageTitle" 
+                                    class="form-input" 
+                                    placeholder="e.g., Anime Background - Cyberpunk City 4K"
+                                    maxlength="100"
+                                    required
+                                >
+                                <p class="form-hint">Be specific and descriptive (30-60 characters recommended)</p>
+                                <div class="char-count"><span id="titleCount">0</span>/100</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imageDesc" class="form-label">
+                                    Description <span class="required">*</span>
+                                </label>
+                                <textarea 
+                                    id="imageDesc" 
+                                    class="form-textarea" 
+                                    placeholder="Describe your image in detail. Include style, colors, mood, elements..."
+                                    maxlength="500"
+                                    rows="5"
+                                    required
+                                ></textarea>
+                                <p class="form-hint">More details help it get discovered (100-200 characters recommended)</p>
+                                <div class="char-count"><span id="descCount">0</span>/500</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imageTags" class="form-label">
+                                    Tags <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="imageTags" 
+                                    class="form-input" 
+                                    placeholder="e.g., anime background, 4k, cyberpunk, digital art"
+                                >
+                                <p class="form-hint">Comma-separated • Critical for search visibility</p>
+                                <div class="tag-suggestions">
+                                    <span class="suggestion-label">Quick add:</span>
+                                    <button type="button" class="tag-btn-small" onclick="addTag('anime background')">anime background</button>
+                                    <button type="button" class="tag-btn-small" onclick="addTag('4k')">4k</button>
+                                    <button type="button" class="tag-btn-small" onclick="addTag('digital art')">digital art</button>
+                                    <button type="button" class="tag-btn-small" onclick="addTag('AI generated')">AI generated</button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Back</button>
+                                <button type="button" class="btn btn-primary" onclick="goToStep(3)">Next: Review</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Category & License -->
+                        <div class="form-step" data-step="3">
+                            <h2 class="step-title">Category & License</h2>
+                            <p class="step-description">Final step - Choose category and set usage rights</p>
+                            
+                            <div class="form-group">
+                                <label for="imageCategory" class="form-label">
+                                    Category <span class="required">*</span>
+                                </label>
+                                <select id="imageCategory" class="form-select" required>
+                                    <option value="">Select a category...</option>
+                                    <option value="anime">🎌 Anime Backgrounds</option>
+                                    <option value="digital-art">🎨 Digital Art</option>
+                                    <option value="landscape">🏔️ Landscapes</option>
+                                    <option value="cyberpunk">🌃 Cyberpunk</option>
+                                    <option value="fantasy">✨ Fantasy</option>
+                                    <option value="abstract">🌀 Abstract</option>
+                                    <option value="character">👤 Character Art</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <p class="form-hint">Choose the most relevant category</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aiTool" class="form-label">AI Tool Used (Optional)</label>
+                                <select id="aiTool" class="form-select">
+                                    <option value="">Not specified</option>
+                                    <option value="stable-diffusion">Stable Diffusion</option>
+                                    <option value="midjourney">Midjourney</option>
+                                    <option value="dalle">DALL-E</option>
+                                    <option value="comfyui">ComfyUI</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Usage License <span class="required">*</span></label>
+                                <div class="license-options">
+                                    <label class="license-option">
+                                        <input type="radio" name="license" value="cc0" checked>
+                                        <div class="license-content">
+                                            <strong>CC0 - Public Domain</strong>
+                                            <p>✓ Commercial use  ✓ Modify  ✓ Share  ✗ Attribution required</p>
+                                        </div>
+                                    </label>
+                                    <label class="license-option">
+                                        <input type="radio" name="license" value="cc-by">
+                                        <div class="license-content">
+                                            <strong>CC-BY - Attribution Required</strong>
+                                            <p>✓ Commercial use  ✓ Modify  ✓ Share  ✓ Attribution required</p>
+                                        </div>
+                                    </label>
+                                    <label class="license-option">
+                                        <input type="radio" name="license" value="cc-by-nc">
+                                        <div class="license-content">
+                                            <strong>CC-BY-NC - Non-Commercial</strong>
+                                            <p>✗ Commercial use  ✓ Modify  ✓ Share  ✓ Attribution required</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="agreeTerms" required>
+                                    I agree to the <a href="/policy.html" target="_blank">Terms of Service</a>
+                                </label>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="goToStep(2)">Back</button>
+                                <button type="submit" class="btn btn-primary btn-large" id="submitBtn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 5v14M5 12h14"></path>
+                                    </svg>
+                                    Upload & Share
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Upload Progress -->
+                        <div id="uploadProgress" class="upload-progress" style="display:none;">
+                            <div class="progress-info">
+                                <p>Uploading to GitHub...</p>
+                                <p id="progressPercent">0%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div id="progressFill" class="progress-fill"></div>
+                            </div>
+                        </div>
+
+                        <!-- Success Message -->
+                        <div id="uploadSuccess" class="success-message" style="display:none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <div>
+                                <h3>Upload Successful! 🎉</h3>
+                                <p>Your image has been added to the gallery. It will appear shortly.</p>
+                                <a href="/" class="btn btn-primary">View Gallery</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Guidelines Sidebar -->
+                <aside class="upload-guidelines">
+                    <div class="guideline-card">
+                        <h3>📋 Quick Checklist</h3>
+                        <ul>
+                            <li>✓ Image is high quality (1920x1080+)</li>
+                            <li>✓ Descriptive title (30-60 chars)</li>
+                            <li>✓ Detailed description (100+ chars)</li>
+                            <li>✓ 3-5 relevant tags</li>
+                            <li>✓ Correct license selected</li>
+                        </ul>
+                    </div>
+
+                    <div class="guideline-card">
+                        <h3>🔍 SEO Tips</h3>
+                        <ul>
+                            <li>Use specific keywords</li>
+                            <li>Include "4k" if applicable</li>
+                            <li>Add style descriptors</li>
+                            <li>Be detailed in description</li>
+                            <li>Use trending tags</li>
+                        </ul>
+                    </div>
+
+                    <div class="guideline-card">
+                        <h3>📏 Best Specs</h3>
+                        <ul>
+                            <li>Resolution: 1920x1080+</li>
+                            <li>Aspect Ratio: 16:9</li>
+                            <li>Format: JPG or PNG</li>
+                            <li>Max Size: 50MB</li>
+                        </ul>
+                    </div>
+
+                    <div class="guideline-card">
+                        <h3>🏆 Trending Tags</h3>
+                        <div class="keyword-list">
+                            <span>anime background 4k</span>
+                            <span>digital art</span>
+                            <span>cyberpunk</span>
+                            <span>fantasy</span>
+                            <span>AI generated</span>
+                            <span>landscape 4k</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI Image Gallery</h4>
+                    <p>Free platform for sharing premium AI-generated images</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Gallery</a></li>
+                        <li><a href="/upload.html">Upload</a></li>
+                        <li><a href="/policy.html">Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Image Gallery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/seo.js" defer></script>
+    <script src="/js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AI Image Gallery - Download Free 4K AI Art & Anime Backgrounds</title>
+    <meta name="description" content="Download high-quality AI-generated images, 4K anime backgrounds & digital art. Free access, daily updates. Perfect for creators and designers.">
+    <meta name="keywords" content="AI images, anime background 4k, digital art, AI art, free download, high resolution, stock images, creative commons">
+    
+    <meta property="og:title" content="AI Image Gallery - Free AI Art & 4K Backgrounds">
+    <meta property="og:description" content="Download free high-quality AI-generated images and anime backgrounds.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-image-gallery.netlify.app">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Image Gallery - Free AI Art Download">
+    
+    <link rel="canonical" href="https://ai-image-gallery.netlify.app/">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#f5f7fa">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23f5f7fa' width='100' height='100'/><circle cx='30' cy='30' r='20' fill='%235ba3d0'/><circle cx='70' cy='70' r='20' fill='%235ba3d0'/><path d='M50 45 L70 45 Q85 45 85 60 L85 80 Q85 95 70 95 L30 95 Q15 95 15 80 L15 60 Q15 45 30 45 L50 45' fill='none' stroke='%235ba3d0' stroke-width='2'/></svg>">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "AI Image Gallery",
+        "url": "https://ai-image-gallery.netlify.app",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://ai-image-gallery.netlify.app/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <a href="#main-gallery" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/" class="logo" aria-label="AI Image Gallery - Home">
+                    <span class="logo-icon">🎨</span>
+                    <span class="logo-text">AI Gallery</span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link active" aria-current="page">Gallery</a></li>
+                    <li><a href="/upload.html" class="nav-link">Upload</a></li>
+                    <li><a href="/policy.html" class="nav-link">Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" role="banner">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    High-Quality<br>
+                    <span class="highlight">AI-Generated Images</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Free 4K AI art, anime backgrounds, and digital artwork. Download unlimited.
+                    <br><em class="text-muted">Anime Background 4K • Digital Art • AI Generated • Fully Free</em>
+                </p>
+                
+                <div class="search-container" role="search">
+                    <input 
+                        type="search" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search: anime background 4k, cyberpunk, landscape..." 
+                        aria-label="Search images"
+                    >
+                    <button class="search-btn" onclick="performSearch()" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="popular-tags">
+                    <span class="tag-label">Trending:</span>
+                    <button class="tag-btn" onclick="searchTag('anime background 4k')">anime background 4k</button>
+                    <button class="tag-btn" onclick="searchTag('digital art')">digital art</button>
+                    <button class="tag-btn" onclick="searchTag('landscape 4k')">landscape 4k</button>
+                    <button class="tag-btn" onclick="searchTag('cyberpunk')">cyberpunk</button>
+                    <button class="tag-btn" onclick="searchTag('fantasy')">fantasy</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-gallery">
+        <div class="container">
+            <section class="filter-section" aria-label="Filter and sort options">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Image Gallery</h2>
+                        <p class="section-subtitle">Browse <span id="total-count">0</span> premium quality images</p>
+                    </div>
+                </div>
+                
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="sortSelect" class="filter-label">Sort:</label>
+                        <select id="sortSelect" class="filter-select" onchange="handleSort()" aria-label="Sort order">
+                            <option value="newest">Newest First</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="random">Random</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="categorySelect" class="filter-label">Category:</label>
+                        <select id="categorySelect" class="filter-select" onchange="handleCategory()" aria-label="Category filter">
+                            <option value="">All Categories</option>
+                            <option value="anime">🎌 Anime Backgrounds</option>
+                            <option value="digital-art">🎨 Digital Art</option>
+                            <option value="landscape">🏔️ Landscapes</option>
+                            <option value="cyberpunk">🌃 Cyberpunk</option>
+                            <option value="fantasy">✨ Fantasy</option>
+                            <option value="abstract">🌀 Abstract</option>
+                            <option value="character">👤 Character Art</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-reset" onclick="resetFilters()" title="Clear all filters">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="1 4 1 10 7 10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                        Reset
+                    </button>
+                </div>
+            </section>
+
+            <div class="gallery-grid" id="galleryGrid" role="region" aria-label="Image gallery">
+                <div class="loading-state" role="status" aria-live="polite">
+                    <div class="spinner"></div>
+                    <p>Loading images...</p>
+                </div>
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">🔍</div>
+                <h3>No images found</h3>
+                <p>Try adjusting your search or filters</p>
+                <button class="btn btn-primary" onclick="resetFilters()">Reset Filters</button>
+            </div>
+
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="btn btn-secondary" onclick="loadMore()">
+                    Load More Images
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="" class="modal-image">
+                <div class="modal-info">
+                    <h3 id="modalTitle" class="modal-title"></h3>
+                    <p id="modalDesc" class="modal-description"></p>
+                    <div class="modal-meta">
+                        <span class="meta-item">📐 <span id="modalSize"></span></span>
+                        <span class="meta-item">📄 <span id="modalFormat"></span></span>
+                        <span class="meta-item">📅 <span id="modalDate"></span></span>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" onclick="downloadImage()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download
+                        </button>
+                        <button class="btn btn-secondary" onclick="copyToClipboard()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                            Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI Image Gallery</h4>
+                    <p>Free platform for premium AI-generated images and artwork</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">Twitter</a>
+                        <a href="#" aria-label="Instagram">Instagram</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Gallery</a></li>
+                        <li><a href="/upload.html">Upload</a></li>
+                        <li><a href="/policy.html">Terms</a></li>
+                        <li><a href="/policy.html#privacy">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="?category=anime">Anime Backgrounds</a></li>
+                        <li><a href="?category=digital-art">Digital Art</a></li>
+                        <li><a href="?category=landscape">Landscapes</a></li>
+                        <li><a href="?category=cyberpunk">Cyberpunk</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AI Image Gallery. All rights reserved.</p>
+                <p class="footer-note">AI-generated images. See <a href="/policy.html">Terms of Service</a> for usage rights.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/seo.js" defer></script>
+    <script src="/js/app.js" defer></script>
+</body>
+</html>
